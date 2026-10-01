@@ -1,6 +1,22 @@
 body{
     background-color: rgb(56, 22, 149);
+    text-align: center;
 }
 h1{
-    color: rgb(211, 218, 22);
+    color: rgb(168, 35, 230);
+    font-style: italic;
+    font-weight: bolder;
 }
+h2{
+    font-style: normal;
+    color: rgb(241, 206, 29);
+
+}
+  .lolo {
+    width: 60px; ;
+    text-align: center;
+  }
+  h3 {
+    font-style: oblique;
+    
+  }
