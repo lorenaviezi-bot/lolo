@@ -2,218 +2,773 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coraline | Do Outro Lado da Porta</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coraline | O Mundo Secreto</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --creme: #faf6ec;
+  --azul: #203f68;
+  --azul-claro: #e7eef6;
+  --amarelo: #f2d77c;
+  --texto: #35435a;
+  --branco: #fffdf8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--creme);
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+}
+
+h1, h2, h3, .logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--azul);
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250,246,236,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e8dfce;
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.logo span, h1 span, h2 span {
+  color: #5685bd;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-size: .88rem;
+  transition: color .2s;
+}
+
+nav a:hover {
+  color: #5685bd;
+}
+
+.botao {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 30px;
+  background: var(--azul);
+  color: white;
+  font-weight: 600;
+  border: 2px solid var(--azul);
+  transition: .25s;
+}
+
+.botao:hover {
+  background: #365b88;
+  transform: translateY(-3px);
+}
+
+section {
+  padding: 85px 8%;
+  scroll-margin-top: 75px;
+}
+
+.etiqueta {
+  color: #6683a6;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  margin-bottom: 22px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.capa {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 45px;
+  background:
+    radial-gradient(ellipse at 90% 10%, #e3eafa 0, transparent 35%),
+    var(--creme);
+  padding-top: 55px;
+  padding-bottom: 65px;
+}
+
+.capa-texto p:not(.etiqueta) {
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+.aviso {
+  display: inline-block;
+  background: var(--amarelo);
+  padding: 5px 12px;
+  border-radius: 5px;
+  transform: rotate(-1deg);
+}
+
+.capa-imagem {
+  position: relative;
+}
+
+.capa-imagem img {
+  height: 450px;
+  border-radius: 48% 48% 18px 18px;
+  box-shadow: 16px 16px 0 #dce5ef;
+}
+
+.selo {
+  position: absolute;
+  right: -15px;
+  bottom: 25px;
+  background: var(--amarelo);
+  color: var(--azul);
+  padding: 15px;
+  border-radius: 50%;
+  font-size: .8rem;
+  font-weight: 700;
+  transform: rotate(10deg);
+}
+
+.intro {
+  text-align: center;
+  max-width: 760px;
+  margin: auto;
+}
+
+.intro p {
+  margin-bottom: 18px;
+}
+
+.historia-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.foto {
+  background: white;
+  padding: 12px;
+  box-shadow: 0 8px 25px #233b5517;
+  transform: rotate(-2deg);
+  border-radius: 5px;
+}
+
+.foto img {
+  height: 350px;
+  border-radius: 3px;
+}
+
+.legenda {
+  font-size: .75rem;
+  letter-spacing: 1px;
+  padding: 12px 4px 3px;
+  color: #718098;
+}
+
+.texto p {
+  margin-bottom: 16px;
+}
+
+.outra-casa {
+  background: var(--azul-claro);
+}
+
+.centro {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 38px;
+}
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.cartao {
+  background: var(--branco);
+  border: 1px solid #e6e1d6;
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 5px 15px #203f680b;
+  transition: .25s;
+}
+
+.cartao:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 28px #203f6818;
+}
+
+.cartao img {
+  height: 190px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.icone {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.mini-titulo {
+  color: #6683a6;
+  font-size: .72rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.segredos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.nota {
+  padding: 35px;
+  background: #f5e8bd;
+  border-radius: 8px;
+  border: 1px dashed #bba76d;
+  transform: rotate(1deg);
+}
+
+.nota p {
+  margin-bottom: 15px;
+}
+
+.jogo {
+  background: #f0e8dc;
+  text-align: center;
+}
+
+.jogo-caixa {
+  max-width: 720px;
+  margin: 30px auto 0;
+  padding: 35px;
+  background: var(--branco);
+  border: 1px solid #e5dac8;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px #203f6810;
+}
+
+.botoes-jogo {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.botao-botao {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid #c9d5e5;
+  background: #e8eef7;
+  color: var(--azul);
+  font-size: 2rem;
+  transition: .2s;
+}
+
+.botao-botao:hover {
+  transform: scale(1.12) rotate(8deg);
+}
+
+.botao-botao.escolhido {
+  background: var(--amarelo);
+  border-color: #bba76d;
+}
+
+#resultado {
+  min-height: 55px;
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.pontuacao {
+  color: #6683a6;
+  font-size: .9rem;
+}
+
+.videos {
+  background: var(--branco);
+}
+
+.lista-videos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.video-card {
+  border: 1px solid #e7dfd2;
+  border-radius: 15px;
+  padding: 12px;
+  background: var(--creme);
+  transition: .2s;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card img {
+  height: 180px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.video-card p {
+  font-size: .9rem;
+  margin-bottom: 12px;
+}
+
+.video-card .botao {
+  font-size: .8rem;
+  padding: 9px 14px;
+}
+
+footer {
+  background: var(--azul);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+footer h2 {
+  color: white;
+}
+
+footer p {
+  font-size: .9rem;
+  opacity: .85;
+}
+
+.voltar {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: underline;
+}
+
+.revelar {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s, transform .7s;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+  header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 12px 18px;
+  }
+
+  .capa, .historia-grid, .segredos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capa {
+    text-align: center;
+    gap: 35px;
+  }
+
+  .capa-texto p:not(.etiqueta) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .capa-imagem img {
+    height: 350px;
+  }
+
+  section {
+    padding: 60px 6%;
+  }
+
+  .cartoes, .lista-videos {
+    grid-template-columns: 1fr;
+  }
+
+  .foto img {
+    height: 270px;
+  }
+
+  .jogo-caixa {
+    padding: 22px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
 </head>
 
-<body>
+<body id="inicio">
 
-    <header class="topo">
-        <a href="#inicio" class="logo">✳ CORALINE<span>.</span></a>
+<header>
+  <a href="#inicio" class="logo">✳ CORALINE<span>.</span></a>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#historia">A história</a>
+    <a href="#outra-casa">Outra Casa</a>
+    <a href="#segredos">Segredos</a>
+    <a href="#jogo">Jogar</a>
+    <a href="#videos">Explorar</a>
+  </nav>
+</header>
 
-        <nav>
-            <a href="#historia">A história</a>
-            <a href="#outra-casa">A Outra Casa</a>
-            <a href="#segredos">Segredos</a>
-            <a href="#videos">Explorar</a>
-        </nav>
-    </header>
+<main>
 
-    <main>
-        <section class="capa" id="inicio">
-            <div class="estrelas">✦　·　✧　·　✦</div>
+<section class="capa">
+  <div class="capa-texto">
+    <p class="etiqueta">✦ Um conto estranho e extraordinário ✦</p>
+    <h1>Do outro lado<br>da <span>porta.</span></h1>
 
-            <div class="capa-texto">
-                <p class="etiqueta">UM CONTO ESTRANHO E EXTRAORDINÁRIO</p>
+    <p>
+      Existe um lugar onde tudo parece perfeito.
+      Uma casa igual à sua. Uma família igual à sua.
+      Só existe um pequeno detalhe...
+    </p>
 
-                <h1>Do outro lado<br>da <span>porta.</span></h1>
+    <p class="aviso">Eles querem que você fique para sempre.</p>
+    <br><br>
+    <a href="#historia" class="botao">Descobrir o segredo ↗</a>
+  </div>
 
-                <p class="introducao">
-                    Existe um lugar onde tudo parece perfeito.
-                    Uma casa igual à sua. Uma família igual à sua.
-                    Só existe um pequeno detalhe...
-                </p>
+  <div class="capa-imagem">
+    <img
+      src="fã da coraline_.jpeg"
+      alt="Imagem da coleção de Coraline"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85'">
+    <div class="selo">✳<br>DOIS<br>MUNDOS</div>
+  </div>
+</section>
 
-                <p class="aviso">Eles querem que você fique para sempre.</p>
+<section id="historia">
+  <div class="intro revelar">
+    <p class="etiqueta">CAPÍTULO I — A DESCOBERTA</p>
+    <h2>Uma menina. Uma porta.<br><span>Dois mundos.</span></h2>
+  </div>
 
-                <a href="#historia" class="botao">
-                    <span>Descobrir o segredo</span> ↗
-                </a>
-            </div>
+  <div class="historia-grid revelar">
+    <div class="foto">
+      <img
+        src="fã da coraline_.jpeg"
+        alt="Imagem de Coraline"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85'">
+      <p class="legenda">FIG. 001 — A CURIOSIDADE</p>
+    </div>
 
-            <div class="numero">01 / 04</div>
-            <div class="decoracao">✳</div>
-        </section>
+    <div class="texto">
+      <p>
+        <strong>Coraline</strong> é um filme de animação lançado
+        em 2009, baseado no livro de Neil Gaiman.
+      </p>
+      <p>
+        A história acompanha uma garota curiosa que se muda
+        para uma nova casa com seus pais e descobre um mundo
+        misterioso escondido atrás de uma pequena porta.
+      </p>
+      <p>
+        No início, tudo parece perfeito: a comida é deliciosa,
+        a casa é encantadora e seus outros pais dão toda a
+        atenção que ela deseja.
+      </p>
+      <p>
+        Porém, a Outra Mãe esconde intenções sombrias.
+        Coraline precisa de coragem e inteligência para
+        descobrir a verdade e escapar daquele lugar.
+      </p>
+    </div>
+  </div>
+</section>
 
-        <section class="historia secao" id="historia">
-            <div class="titulo-secao">
-                <p class="etiqueta">CAPÍTULO I — A DESCOBERTA</p>
-                <h2>Uma menina.<br>Uma porta. <span>Dois mundos.</span></h2>
-            </div>
+<section class="outra-casa" id="outra-casa">
+  <div class="centro revelar">
+    <p class="etiqueta">CAPÍTULO II — CUIDADO COM OS DESEJOS</p>
+    <h2>Bem-vinda à <span>Outra Casa.</span></h2>
+    <p>Tudo o que você sempre quis pode esconder aquilo que você mais teme.</p>
+  </div>
 
-            <div class="historia-grid">
-                <div class="foto-moldura">
-                    <img src="fã da coraline_.jpeg"
-                         alt="Coraline em seu universo misterioso">
-                    <span class="legenda-foto">FIG. 001 — A CURIOSIDADE</span>
-                </div>
+  <div class="cartoes">
+    <article class="cartao revelar">
+      <img
+        src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=700&q=80"
+        alt="Casa cercada por árvores">
+      <p class="mini-titulo">✧ O LUGAR</p>
+      <h3>Um mundo perfeito?</h3>
+      <p>Uma versão encantadora da realidade, cheia de maravilhas e detalhes estranhos.</p>
+    </article>
 
-                <div class="texto-historia">
-                    <span class="aspas">“</span>
-                    <p>
-                        Coraline é um filme de animação lançado em 2009,
-                        baseado no livro de mesmo nome escrito por
-                        Neil Gaiman.
-                    </p>
+    <article class="cartao revelar">
+      <img
+        src="https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=700&q=80"
+        alt="Detalhe de um objeto redondo">
+      <p class="mini-titulo">◉ O PREÇO</p>
+      <h3>Olhos de botão</h3>
+      <p>O símbolo inquietante do filme. Aceitar esse mundo significa arriscar sua liberdade.</p>
+    </article>
 
-                    <p>
-                        A história acompanha uma garota curiosa que se
-                        muda para uma nova casa com seus pais e acaba
-                        descobrindo um mundo misterioso escondido atrás
-                        de uma pequena porta.
-                    </p>
+    <article class="cartao revelar">
+      <img
+        src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=700&q=80"
+        alt="Arte e objetos misteriosos">
+      <p class="mini-titulo">♧ O PERIGO</p>
+      <h3>A Outra Mãe</h3>
+      <p>Uma presença sedutora e assustadora que deseja manter Coraline naquele lugar.</p>
+    </article>
+  </div>
+</section>
 
-                    <p>
-                        No início, tudo parece perfeito. A comida é
-                        deliciosa, a casa é encantadora e seus outros
-                        pais lhe dão toda a atenção que ela deseja.
-                        Mas nem tudo é o que parece.
-                    </p>
+<section id="segredos">
+  <div class="segredos-grid">
+    <div class="revelar">
+      <p class="etiqueta">CAPÍTULO III — POR TRÁS DA MAGIA</p>
+      <h2>Costurado à mão.<br>Feito de <span>pesadelos.</span></h2>
 
-                    <p>
-                        A Outra Mãe esconde intenções sombrias, e
-                        Coraline precisa de coragem e inteligência
-                        para escapar desse mundo.
-                    </p>
+      <p>
+        O filme foi produzido com a técnica stop motion.
+        Personagens e objetos físicos são fotografados
+        quadro a quadro para criar a sensação de movimento.
+      </p>
+      <br>
+      <p>
+        Esse trabalho minucioso dá à animação uma aparência
+        artesanal e cria uma atmosfera única.
+      </p>
+      <br>
+      <p>
+        Coraline, Wybie, o gato preto e os excêntricos
+        vizinhos tornam a história ainda mais misteriosa.
+      </p>
+    </div>
 
-                    <span class="assinatura">— Anotações do mundo secreto</span>
-                </div>
-            </div>
-        </section>
+    <div class="nota revelar">
+      <p class="etiqueta">ARQUIVO Nº 003</p>
+      <h3>Uma pequena curiosidade ◉</h3>
+      <p>
+        Os botões não são apenas um detalhe visual.
+        Eles reforçam o clima de estranheza e a ideia
+        de controle presente na história.
+      </p>
+      <strong>✦ NÃO CONFIE EM TUDO O QUE VÊ.</strong>
+    </div>
+  </div>
+</section>
 
-        <section class="outra-casa secao" id="outra-casa">
-            <p class="etiqueta">CAPÍTULO II — CUIDADO COM OS DESEJOS</p>
-            <h2>Bem-vinda à <span>Outra Casa.</span></h2>
+<section class="jogo" id="jogo">
+  <div class="centro">
+    <p class="etiqueta">CAPÍTULO IV — DESAFIO SECRETO</p>
+    <h2>Encontre o <span>botão mágico.</span></h2>
+    <p>Um dos três botões esconde a chave da porta secreta. Será que você consegue encontrá-lo?</p>
+  </div>
 
-            <p class="descricao">
-                Tudo o que você sempre quis pode esconder
-                aquilo que você mais teme.
-            </p>
+  <div class="jogo-caixa">
+    <h3>Qual botão você escolhe?</h3>
+    <p>Escolha apenas um botão para tentar descobrir o segredo.</p>
 
-            <div class="cartoes">
-                <article class="cartao">
-                    <span class="simbolo">✧</span>
-                    <p class="mini-titulo">O LUGAR</p>
-                    <h3>Um mundo perfeito?</h3>
-                    <p>
-                        Uma versão encantadora da realidade,
-                        cheia de maravilhas e detalhes estranhos.
-                    </p>
-                </article>
+    <div class="botoes-jogo">
+      <button class="botao-botao" aria-label="Escolher botão 1" onclick="escolher(0)">✿</button>
+      <button class="botao-botao" aria-label="Escolher botão 2" onclick="escolher(1)">◉</button>
+      <button class="botao-botao" aria-label="Escolher botão 3" onclick="escolher(2)">✿</button>
+    </div>
 
-                <article class="cartao cartao-amarelo">
-                    <span class="simbolo">◉</span>
-                    <p class="mini-titulo">O PREÇO</p>
-                    <h3>Olhos de botão</h3>
-                    <p>
-                        O símbolo mais inquietante do filme:
-                        aceitar esse mundo significa arriscar
-                        sua liberdade e identidade.
-                    </p>
-                </article>
+    <p id="resultado" aria-live="polite">A porta está esperando sua escolha...</p>
+    <p class="pontuacao">Tentativas: <span id="tentativas">0</span> · Acertos: <span id="acertos">0</span></p>
+    <br>
+    <button class="botao" onclick="reiniciar()">Jogar novamente ↻</button>
+  </div>
+</section>
 
-                <article class="cartao">
-                    <span class="simbolo">♧</span>
-                    <p class="mini-titulo">O PERIGO</p>
-                    <h3>A Outra Mãe</h3>
-                    <p>
-                        Uma presença sedutora e assustadora
-                        que deseja manter Coraline naquele lugar.
-                    </p>
-                </article>
-            </div>
-        </section>
+<section class="videos" id="videos">
+  <div class="centro">
+    <p class="etiqueta">CAPÍTULO V — ARQUIVOS SECRETOS</p>
+    <h2>Explore os <span>mistérios.</span></h2>
+    <p>Descubra mais sobre o filme, seus personagens e os segredos da produção.</p>
+  </div>
 
-        <section class="segredos secao" id="segredos">
-            <div class="segredos-texto">
-                <p class="etiqueta">CAPÍTULO III — POR TRÁS DA MAGIA</p>
-                <h2>Costurado à mão.<br>Feito de <span>pesadelos.</span></h2>
+  <div class="lista-videos">
+    <article class="video-card">
+      <img
+        src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80"
+        alt="Paisagem misteriosa">
+      <p class="mini-titulo">ARQUIVO 001</p>
+      <h3>O trailer</h3>
+      <p>Entre no universo misterioso de Coraline.</p>
+      <a class="botao" href="https://www.youtube.com/results?search_query=Coraline+trailer+oficial" target="_blank" rel="noopener noreferrer">Assistir ↗</a>
+    </article>
 
-                <p>
-                    A animação foi produzida utilizando stop motion:
-                    personagens e objetos físicos são fotografados
-                    quadro a quadro para criar movimento.
-                </p>
+    <article class="video-card">
+      <img
+        src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=700&q=80"
+        alt="Arte e criação">
+      <p class="mini-titulo">ARQUIVO 002</p>
+      <h3>Por trás da animação</h3>
+      <p>Conheça a técnica usada para dar vida aos personagens.</p>
+      <a class="botao" href="https://www.youtube.com/results?search_query=Coraline+making+of+stop+motion" target="_blank" rel="noopener noreferrer">Explorar ↗</a>
+    </article>
 
-                <p>
-                    Esse trabalho minucioso ajuda a criar a aparência
-                    artesanal e a atmosfera inquietante do filme.
-                </p>
+    <article class="video-card">
+      <img
+        src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=700&q=80"
+        alt="Floresta misteriosa">
+      <p class="mini-titulo">ARQUIVO 003</p>
+      <h3>Teorias e segredos</h3>
+      <p>Veja interpretações e detalhes escondidos na história.</p>
+      <a class="botao" href="https://www.youtube.com/results?search_query=Coraline+teorias+e+segredos" target="_blank" rel="noopener noreferrer">Descobrir ↗</a>
+    </article>
+  </div>
+</section>
 
-                <p>
-                    Além de Coraline, personagens como Wybie, o gato
-                    preto e os excêntricos vizinhos tornam essa jornada
-                    ainda mais misteriosa.
-                </p>
-            </div>
+</main>
 
-            <div class="segredo-nota">
-                <span class="nota-numero">Nº 003</span>
-                <span class="botao-olho">◉</span>
-                <h3>Uma pequena curiosidade</h3>
-                <p>
-                    Os botões não são apenas um detalhe visual.
-                    Eles reforçam o clima de estranheza e a ideia
-                    de controle presente na história.
-                </p>
-                <span class="nota-rodape">NÃO CONFIE EM TUDO O QUE VÊ.</span>
-            </div>
-        </section>
+<footer>
+  <h2>✳ CORALINE.</h2>
+  <p>Entre os dois mundos, existe uma escolha.</p>
+  <a href="#inicio" class="voltar">Voltar ao início ↑</a>
+</footer>
 
-        <section class="videos secao" id="videos">
-            <p class="etiqueta">CAPÍTULO IV — ARQUIVOS SECRETOS</p>
-            <h2>Abra os <span>arquivos.</span></h2>
-            <p class="descricao">
-                Explore os vídeos que fazem parte da sua coleção
-                sobre o universo de Coraline.
-            </p>
+<script>
+let tentativas = 0;
+let acertos = 0;
+let botaoSecreto = Math.floor(Math.random() * 3);
+let bloqueado = false;
 
-            <div class="lista-videos">
-                <a href="https://www.youtube.com/watch?v=0zZ9Q3Lxealine"
-                   target="_blank" rel="noopener noreferrer"
-                   class="video-link">
-                    <span class="play">▶</span>
-                    <span><small>ARQUIVO 001</small><strong>Primeiro vídeo</strong></span>
-                    <span class="seta">↗</span>
-                </a>
+function escolher(numero) {
+  if (bloqueado) return;
 
-                <a href="https://www.youtube.com/watch?v=frLAu4ewYks"
-                   target="_blank" rel="noopener noreferrer"
-                   class="video-link">
-                    <span class="play">▶</span>
-                    <span><small>ARQUIVO 002</small><strong>Segundo vídeo</strong></span>
-                    <span class="seta">↗</span>
-                </a>
+  bloqueado = true;
+  tentativas++;
 
-                <a href="https://www.youtube.com/watch?v=S71LVeSCgB8"
-                   target="_blank" rel="noopener noreferrer"
-                   class="video-link">
-                    <span class="play">▶</span>
-                    <span><small>ARQUIVO 003</small><strong>Terceiro vídeo</strong></span>
-                    <span class="seta">↗</span>
-                </a>
-            </div>
-        </section>
-    </main>
+  const botoes = document.querySelectorAll('.botao-botao');
+  const resultado = document.getElementById('resultado');
 
-    <footer>
-        <span class="logo">CORALINE<span>.</span></span>
-        <p>Entre os dois mundos, existe uma escolha.</p>
-        <a href="#inicio">VOLTAR AO INÍCIO ↑</a>
-    </footer>
+  botoes.forEach((botao, indice) => {
+    botao.disabled = true;
+
+    if (indice === botaoSecreto) {
+      botao.textContent = '🔑';
+      botao.classList.add('escolhido');
+    } else if (indice === numero) {
+      botao.textContent = '✕';
+    }
+  });
+
+  if (numero === botaoSecreto) {
+    acertos++;
+    resultado.textContent = '✨ Você encontrou a chave! A porta secreta está aberta!';
+  } else {
+    resultado.textContent = '🗝️ Não foi dessa vez! A chave estava em outro botão.';
+  }
+
+  document.getElementById('tentativas').textContent = tentativas;
+  document.getElementById('acertos').textContent = acertos;
+}
+
+function reiniciar() {
+  botaoSecreto = Math.floor(Math.random() * 3);
+  bloqueado = false;
+
+  document.querySelectorAll('.botao-botao').forEach((botao, indice) => {
+    botao.disabled = false;
+    botao.textContent = indice === 1 ? '◉' : '✿';
+    botao.classList.remove('escolhido');
+  });
+
+  document.getElementById('resultado').textContent =
+    'A porta está esperando sua escolha...';
+}
+
+// Animações suaves ao rolar a página
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach((entrada) => {
+    if (entrada.isIntersecting) {
+      entrada.target.classList.add('visivel');
+      observador.unobserve(entrada.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.revelar').forEach((elemento) => {
+  observador.observe(elemento);
+});
+</script>
 
 </body>
 </html>
+
 
